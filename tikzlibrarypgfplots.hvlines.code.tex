@@ -1,0 +1,58 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% title: Draw horizontal and vertical lines that cross an axis
+% type: pgfplots library
+% author: Antoine Lejay
+% date: 2017-08-05
+% usage: \usepgfplotslibrary{hvlines}
+% licence: LLPL
+% version: 0.1
+%
+% alternatives: see https://tex.stackexchange.com/questions/240642/add-vertical-line-of-equation-x-2-and-shade-a-region-in-graph-by-pgfplots
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % Two keys, `vertical line` and horizontal line` are defined that could be called
+% in the options of axis. They took key-values with key `at` for the position and
+% `style` for the style of the line.
+%
+% Example
+% \begin{axis}[vertical line={at=2.5,style={blue}},horizontal line={at=1.5,style={dashed,->}}]
+%     \addplot table {
+% 	    1	1
+% 	    2	2
+% 	3	3.5};
+% \end{axis}
+%
+\def\pgfplots@last@vertline@pos{0.0} % default value
+\tikzset{vertical line/.code={\pgfqkeys{/tikz/vertical line}{#1}}, % execute #1 in the /tikz/vertical line directory
+    vertical line style/.style={},
+    vertical line={
+	at/.store in=\pgfplots@last@vertline@pos, % default value
+	style/.style={/tikz/vertical line style/.style={#1}}, % style for the lines
+    },
+    vertical line/.code={
+	\pgfqkeys{/tikz/vertical line}{style={},#1} % read the keys in the /tikz/vertical line directory
+	 tikz/execute at begin axis/.append={
+	   \draw[vertical line style] let \p1=(axis description cs:0,0), \p2=(axis description cs:0,1), \p3=(axis cs:\pgfplots@last@vertline@pos,0) in (\x3,\y1) -- (\x3,\y2);
+       \pgfqkeys{/tikz/vertical line}{style={}}
+   },
+    },
+}
+
+\def\pgfplots@last@horizontalline@pos{0.0} % default value
+\tikzset{horizontal line/.code={\pgfqkeys{/tikz/horizontal line}{#1}}, % execute #1 in the /tikz/horizontal line directory
+    horizontal line style/.style={},
+    horizontal line={
+	at/.store in=\pgfplots@last@horizontalline@pos, % default value
+	style/.style={/tikz/horizontal line style/.style={#1}}, % style for the lines
+    },
+    horizontal line/.code={
+	\pgfqkeys{/tikz/horizontal line}{style={},#1} % read the keys in the /tikz/horizontal line directory
+	 tikz/execute at begin axis/.append={
+	   \draw[horizontal line style] let \p1=(axis description cs:0,0), \p2=(axis description cs:1,0), \p3=(axis cs:0,\pgfplots@last@horizontalline@pos) in (\x1,\y3) -- (\x2,\y3);
+       \pgfqkeys{/tikz/horizontal line}{style={}}
+   },
+    },
+}
+\endinput
+% END 
