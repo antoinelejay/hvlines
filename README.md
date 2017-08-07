@@ -5,7 +5,7 @@
 
 A small [PGFPlots](https://ctan.org/pkg/pgfplots) library to draw horizontal and vertical lines.
 
-## Installation
+## Installation and loading
 
 Place tikzlibrarypgfplots.hvlines.code.tex in a directory read by your TeX compiler. 
 Load it through 
@@ -20,7 +20,7 @@ Load it through
 
 ## Motivation and usage
 
-Two keys, `vertical line` and horizontal line` are defined that could be called
+Two keys, `vertical line` and `horizontal line` are defined that could be called
 in the options of axis. They took key-values with key `at` for the position and
 `style` for the style of the line.
 
@@ -45,6 +45,6 @@ This is an experimental, alpha release, designed first for personnal use.
 
 ## TODO
 
-☐ Add commands for defining nodes. 
-☐ Dealing with missing value at.
+* Add commands for defining nodes. 
+* Dealing with missing value `at`.
 
