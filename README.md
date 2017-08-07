@@ -8,6 +8,11 @@ A small [PGFPlots](https://ctan.org/pkg/pgfplots) library to draw horizontal and
 ## Installation
 
 Place tikzlibrarypgfplots.hvlines.code.tex in a directory read by your TeX compiler. 
+Load it through 
+```latex
+\usetikzlibrary{calc} % required
+\usepgfplotslibrary{hvlines}
+```
 
 ## Licence
 
