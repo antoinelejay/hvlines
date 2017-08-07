@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepgfplotslibrary{hvlines}
+
+\begin{document}
+\begin{tikzpicture}
+     \begin{axis}[vertical line={at=2.5,style={blue}},horizontal line={at=1.5,style={dashed,->}}]
+	 \addplot table {
+		 1	1
+		 2	2
+		 3   3.5
+	     };
+ \end{axis}
+\end{tikzpicture}
+\end{document}
